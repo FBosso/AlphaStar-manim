@@ -1,10 +1,20 @@
+---
+noteId: "dabd75a0877c11f18abaadb99530e83b"
+tags: []
+
+---
+
 # AlphaStar Manim
 
 This is a manim presentation I made to explain AlphaStar (DeepMind's StarCraft II agent) and how it's trained.
 
 The slides are built in Python with [Manim](https://www.manim.community/) and [Manim Slides](https://manim-slides.eu/).
 
-![Actor-Critic diagram building itself, from the training slides](assets/actor_critic_preview.gif)
+<p align="center">
+  <img src="assets/actor_critic_preview.gif" alt="Actor-Critic diagram building itself, from the training slides" width="640" style="border-radius: 12px;">
+  <br>
+  <em>The Actor-Critic diagram, from the training slides</em>
+</p>
 
 ## What's in here
 
