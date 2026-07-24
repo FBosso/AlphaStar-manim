@@ -60,7 +60,7 @@ class Training(Slide):
         rl_item_1 = Tex(r"$\bullet$ Weights obtained from \textbf{Supervised Learning} used to \textbf{initialize RL agent}", font_size=30)
         rl_item_2 = Tex(r"$\bullet$ RL algorithm is designed to", font_size=30)
         rl_item_3 = Tex(r"$\bullet$ Maximize the win rate", font_size=28)
-        rl_item_4 = Tex(r"$\bullet$ Mixture of opponents", font_size=28)
+        rl_item_4 = Tex(r"$\bullet$ Play against a mixture of opponents", font_size=28)
 
         rl_subitems = VGroup(rl_item_3, rl_item_4).arrange(DOWN, aligned_edge=LEFT, buff=0.2)
 
@@ -272,7 +272,7 @@ class Training(Slide):
         #v-trace section
         self.play(technique_terms[0].animate.set_color("#363636"), technique_terms[2].animate.set_color("#363636"), technique_terms[1].animate.set_color(WHITE))
         v_trace_question = Tex(r"Why is it used?", font_size=30).next_to(win_rate_question, 2 * DOWN)
-        on_policy_actor_critic = Tex(r"$\bullet$ Naive Actor-Critic implementation are on-policy", font_size=30)
+        on_policy_actor_critic = Tex(r"$\bullet$ Naive Actor-Critic implementations are on-policy", font_size=30)
         importance_sampling_intro = Tex(r"$\bullet$ We make Naive Actor-Critic off-policy with Importance Sampling", font_size=30, substrings_to_isolate=[r"Importance Sampling"])
         importance_sampling_part = importance_sampling_intro.get_part_by_tex("Importance Sampling")
         importance_sampling_explanation = Tex(r"Estimate the expectation of a \textbf{different} \\ \textbf{distribution} with respect to the distribution \\ used to \textbf{draw samples}", font_size=30).next_to(importance_sampling_part, 5 * DOWN)
@@ -629,9 +629,9 @@ class Training(Slide):
         self.play(FadeOut(low_variance_and_bias,arrow_c_3,arrow_c_2,arrow_c_1,arrow_rho_3,arrow_rho_2,arrow_rho_1,rho,c,unrolled_is))        
         
         #UPGO
-        self.play(targets[0].animate.set_color("#363636"), targets[1].animate.set_color("#363636"),targets[2].animate.set_color(WHITE))
-        
-        what_upgo = Tex(r"It moves the \textbf{policy} towards trajectories with \textbf{better than} \\ \textbf{expected rewards} by updating in the direction of", font_size=30).next_to(question_max, 2*DOWN)
+        self.play(technique_terms[0].animate.set_color("#363636"), technique_terms[1].animate.set_color("#363636"),technique_terms[2].animate.set_color(WHITE))
+
+        what_upgo = Tex(r"It moves the \textbf{policy} towards trajectories with \textbf{better than} \\ \textbf{expected rewards} by updating in the direction of", font_size=30).next_to(win_rate_question, 2*DOWN)
         
         upgo_update = MathTex(
                 r"\left(",
@@ -665,7 +665,7 @@ class Training(Slide):
         ####### UNROLL UPGO
         
         self.play(FadeOut(what_upgo,upgo_update,where,upgo_logic))
-        lets_unroll = Tex(r"Let's unroll this \\ (3 better than expected steps + 1 worse than expected)", font_size=30).next_to(question_max, 2*DOWN)
+        lets_unroll = Tex(r"Let's unroll this \\ (3 better than expected steps + 1 worse than expected)", font_size=30).next_to(win_rate_question, 2*DOWN)
         self.play(FadeIn(lets_unroll))
         self.next_slide()
         
@@ -773,38 +773,38 @@ class Training(Slide):
         
         td_text = Tex(r"Allows for n-step returns",font_size=30)
         v_trace_text = Tex(r"Allows for re-using experience and keeping variance low",font_size=30)
-        upgo_text = Tex(r"Allows to reinforce better than expected n-steps trajectories",font_size=30)
+        upgo_text = Tex(r"Allows for reinforcing better than expected n-step trajectories",font_size=30)
         
         texts = VGroup(td_text,v_trace_text,upgo_text)
         texts.arrange(DOWN, aligned_edge=LEFT, buff=0.4)
         texts.move_to(ORIGIN)
         
         
-        self.play(FadeOut(gtu_proof,question_max, lets_unroll),
-                  targets[0].animate.set_color(WHITE), targets[1].animate.set_color(WHITE))
+        self.play(FadeOut(gtu_proof,win_rate_question, lets_unroll),
+                  technique_terms[0].animate.set_color(WHITE), technique_terms[1].animate.set_color(WHITE))
         self.play(FadeIn(texts))
-        
+
         self.next_slide()
-        
-        self.play(FadeOut(texts, targets[0],targets[1],targets[2]))
-        
-        question_max.next_to(arrow_max, RIGHT)
-        self.play(FadeIn(items), FadeIn(arrow_max), FadeIn(arrow_mixture), FadeIn(question_mixture), FadeIn(question_max))
-        
+
+        self.play(FadeOut(texts, technique_terms[0],technique_terms[1],technique_terms[2]))
+
+        win_rate_question.next_to(win_rate_arrow, RIGHT)
+        self.play(FadeIn(rl_items_group), FadeIn(win_rate_arrow), FadeIn(opponent_mixture_arrow), FadeIn(opponent_question), FadeIn(win_rate_question))
+
         self.next_slide()
-        
-        self.play(Indicate(question_mixture))
-        
+
+        self.play(Indicate(opponent_question))
+
         self.next_slide()
-        
-        self.play(FadeOut(items), 
-                  FadeOut(arrow_max), 
-                  FadeOut(arrow_mixture), 
-                  FadeOut(question_max),
-                  question_mixture.animate.next_to(rl, DOWN))
-        
-        
-        league_training = Tex(r"\textbf{League Training}: consists of \textbf{3 different type of agents} differing primarily in their mechanism for \textbf{selecting the opponent mixture}", font_size =30).next_to(question_mixture,DOWN)
+
+        self.play(FadeOut(rl_items_group),
+                  FadeOut(win_rate_arrow),
+                  FadeOut(opponent_mixture_arrow),
+                  FadeOut(win_rate_question),
+                  opponent_question.animate.next_to(reinforcement_learning_title, DOWN))
+
+
+        league_training = Tex(r"\textbf{League Training}: consists of \textbf{3 different types of agents} differing primarily in their mechanism for \textbf{selecting the opponent mixture}", font_size =30).next_to(opponent_question,DOWN)
         
         rect_ma = Tex(r"Main Agents", font_size=32)
         rect_me = Tex(r"Main Exploiters", font_size=32)
@@ -858,7 +858,7 @@ class Training(Slide):
         item3_me = Tex(r"$\bullet$ Frozen copies are regularly added to the league", font_size=30)
         item4_me = Tex(r"$\bullet$ After saving the copy: reset to supervised parameters", font_size=30)
         me_text = VGroup(item1_me, item2_me, item3_me, item4_me).arrange(DOWN, aligned_edge=LEFT).next_to(box_me_group, 2*RIGHT)
-        me_box_description = Tex(r"Identify \\ weaknesses of \\ Main Agent", font_size = 30).next_to(box_me_group, DOWN)
+        me_box_description = Tex(r"Identify \\ weaknesses in \\ the Main Agent", font_size = 30).next_to(box_me_group, DOWN)
         self.play(FadeIn(me_box_description))
         self.play(FadeIn(me_text))
         
@@ -877,7 +877,7 @@ class Training(Slide):
         self.next_slide()
         self.play(FadeOut(le_text,le_box_description,box_le_group))
         
-        psfp_text = Tex(r"Prioritized Fictitious Self Play (PSFP) is a matchmaking mechanism studied to provide a good learning signal to agents during training", font_size = 30).next_to(question_mixture, 2*DOWN)
+        psfp_text = Tex(r"Prioritized Fictitious Self-Play (PFSP) is a matchmaking mechanism studied to provide a good learning signal to agents during training", font_size = 30).next_to(opponent_question, 2*DOWN)
         pfsp_theorem = Tex(r"Given a learning agent $\textbf{A}$, we sample the frozen opponent $\textbf{B}$ from a candidate set $\mathcal{C}$ with probability", font_size = 30).next_to(psfp_text,2*DOWN)
         
         psfp_prob = MathTex(r"\frac{f(\mathbb{P}(A \text{ beats } B))}{\sum_{c \in C} f(\mathbb{P}(A \text{ beats } c))}", font_size = 35).next_to(pfsp_theorem, 2*DOWN)
@@ -939,7 +939,7 @@ class Training(Slide):
         self.play(Create(graph_var), Write(eq_var))
         self.next_slide()
         
-        self.play(FadeOut(axes,axes_labels,graph_hard,eq_hard,graph_var,eq_var,question_mixture,rl,psfp_prob))
+        self.play(FadeOut(axes,axes_labels,graph_hard,eq_hard,graph_var,eq_var,opponent_question,reinforcement_learning_title,psfp_prob))
         
         
         ####ARCHITECTURE
@@ -955,8 +955,8 @@ class Training(Slide):
         self.play(FadeOut(arch_img))
         
         results = Tex(r"Results").next_to(title,DOWN)
-        test_results1 = Tex(r"\textbf{AlphaStar Final} (after RL training): $> 99.8\%$ ranked human players", font_size=30).next_to(results,1.5*DOWN)
-        test_results2 = Tex(r"\textbf{AlphaStar Supervised} (after SL training): $> 84\%$ ranked human players", font_size=30).next_to(test_results1, DOWN)
+        test_results1 = Tex(r"\textbf{AlphaStar Final} (after RL training): $> 99.8\%$ of ranked human players", font_size=30).next_to(results,1.5*DOWN)
+        test_results2 = Tex(r"\textbf{AlphaStar Supervised} (after SL training): $> 84\%$ of ranked human players", font_size=30).next_to(test_results1, DOWN)
         res_img = ImageMobject("assets/results.png")
         res_img.scale(0.6)
         res_img.next_to(test_results2, DOWN, buff=0.2)

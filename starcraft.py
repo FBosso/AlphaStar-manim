@@ -13,10 +13,10 @@ class Starcraft(Slide):
         
         bullets = Tex(r"""
                       \begin{itemize}
-                        \item Real Time Strategy (RTS) game
+                        \item Real-Time Strategy (RTS) game
                         \item Combinatorial action space
-                        \item Thousands of real time decisions
-                        \item Imperfect informations
+                        \item Thousands of real-time decisions
+                        \item Imperfect information
                       \end{itemize}
                       """, font_size=30).shift(3*LEFT)
         
