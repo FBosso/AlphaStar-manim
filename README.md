@@ -1,9 +1,3 @@
----
-noteId: "8c2260f0877611f18abaadb99530e83b"
-tags: []
-
----
-
 # AlphaStar Manim
 
 This is a manim presentation I made to explain AlphaStar (DeepMind's StarCraft II agent) and how it's trained.
